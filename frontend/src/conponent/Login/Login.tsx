@@ -22,7 +22,7 @@ const Login12 = (props: Props) => {
                       <div className="mb-4">
                         <input id="remember" type="checkbox" />
                         <label htmlFor="remember" className="cursor-pointer">Remember me</label>
-                        <span>Or </span>
+                        <span className="ml-2">Or </span>
                         <a href="#" className="inline-block mx-2 text-orange">Forgot Password?</a>
                       </div>
                       <a href="#" className="inline-block leading-none uppercase text-white text-sm bg-dark px-5 py-4 transition-all hover:bg-orange">

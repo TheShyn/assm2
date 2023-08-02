@@ -27,7 +27,7 @@ const Header = (props: Props) => {
                   <li className="main-menu__item relative group">
                     <a
                       className="block py-10 xl:pr-6 md:pr-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
-                      href="https://htmldemo.net/"
+                      href="/"
                     >
                       Home
                     </a>
@@ -36,7 +36,7 @@ const Header = (props: Props) => {
                   <li className="main-menu__item group">
                     <a
                       className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
-                      href="#"
+                      href="products"
                     >
                       Shop
                     </a>
