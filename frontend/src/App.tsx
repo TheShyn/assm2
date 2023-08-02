@@ -1,4 +1,7 @@
 import { Route, Routes } from "react-router-dom"
+import Login from "./page/client/authen/login"
+import Register from "./page/client/authen/register"
+import ListPoduct from "./page/client/products/ListPoduct"
 
 function App() {
 
@@ -7,7 +10,9 @@ function App() {
     <>
       <Routes>
         <Route path='/'>
-          
+            <Route index element={<Login/>} />
+            <Route path="register" element={<Register/>} />
+            <Route path="products" element={<ListPoduct/>} />
         </Route>
         <Route path='admin'>
 
