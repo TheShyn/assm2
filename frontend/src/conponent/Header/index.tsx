@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -25,45 +26,55 @@ const Header = (props: Props) => {
               <nav className="main-menu">
                 <ul className="flex flex-wrap">
                   <li className="main-menu__item relative group">
-                    <a
+                    {/* <a
                       className="block py-10 xl:pr-6 md:pr-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
                       href="https://htmldemo.net/"
                     >
                       Home
-                    </a>
+                    </a> */}
+                    <Link className="block py-10 xl:pr-6 md:pr-5 capitalize font-normal text-md text-primary hover:text-orange transition-all" to="/">Home</Link>
+
                   </li>
 
                   <li className="main-menu__item group">
-                    <a
+                    {/* <a
                       className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
                       href="#"
                     >
                       Shop
-                    </a>
+                    </a> */}
+                    <Link className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all" to="/products">Shop</Link>
+
                   </li>
                   <li className="main-menu__item relative group">
-                    <a
+                    {/* <a
                       className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
                       href="#"
                     >
                       Blog
-                    </a>
+                    </a> */}
+                    <Link className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all" to="/blog">Blog</Link>
+
                   </li>
                   <li className="main-menu__item relative group">
-                    <a
+                    {/* <a
                       className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
                       href="#"
                     >
                       pages
-                    </a>
+                    </a> */}
+                    <Link className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all" to="/page">Pages</Link>
+
                   </li>
                   <li className="main-menu__item">
-                    <a
+                    {/* <a
                       className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all"
                       href="contact-us.html"
                     >
                       Contact
-                    </a>
+                    </a> */}
+                    <Link className="block py-10 xl:px-6 md:px-5 capitalize font-normal text-md text-primary hover:text-orange transition-all" to="/contact">Contact</Link>
+                    
                   </li>
                 </ul>
               </nav>
