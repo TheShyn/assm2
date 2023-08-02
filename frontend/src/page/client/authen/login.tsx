@@ -9,10 +9,7 @@ const Login = (props: Props) => {
     <div>
       <Header/>
 
-      <div>
             
-
-      </div>
 
       
       <Footer/>
