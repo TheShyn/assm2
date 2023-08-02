@@ -1,18 +1,19 @@
 import React from "react";
-import Header from "../../conponent/Admin/Header";
-import Sidebar from "../../conponent/Admin/Sidebar";
 import { Outlet } from "react-router-dom";
-import "../../assets/css/dashboard.css"
+import "../../assets/css/dashboard.css";
+import Header from "../../conponent/Header";
+import Footer from "../../conponent/Footer";
 
 type Props = {};
 
 const WebsiteLayout = (props: Props) => {
-  return 
-    <>
-        <Sidebar />
-        <Outlet/>
-    </>
-  
+  return (
+    <div>
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 };
 
 export default WebsiteLayout;
