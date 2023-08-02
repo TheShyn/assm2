@@ -10,15 +10,16 @@ import ProductUpdate from "./page/admin/product/ProductUpdate";
 import CategoryList from "./page/admin/categories/CategoryList";
 import CategoryAdd from "./page/admin/categories/CategoryAdd";
 import CategoryEdit from "./page/admin/categories/CategoryEdit";
+import WebsiteLayout from "./page/layouts/WebsiteLayout";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/">
+        <Route path="/" element={<WebsiteLayout/> }>
           <Route index element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="products" element={<ListPoduct />} />
+          <Route path="signin" element={<Login />} />
+          <Route path="signup" element={<Register />} />
         </Route>
         <Route path="admin" element={<AdminLayout/> } >
           <Route index element={<Navigate to="dashboard" />} />
