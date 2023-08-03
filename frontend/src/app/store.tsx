@@ -1,23 +1,40 @@
 import { Action, ThunkAction, combineReducers, configureStore } from '@reduxjs/toolkit';
-import { persistReducer, persistStore } from 'redux-persist';
+import {
+    persistReducer,
+    persistStore,
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+    REHYDRATE,
+} from 'redux-persist';
+
 import storage from 'redux-persist/lib/storage';
 import Products from '../Slices/Products';
+import productApi, { productReducer } from '../api/product';
 const persistConfig = {
     key: 'root',
     storage,
-    whileList: ['auth','cartUser'], // luu strorage
+    whileList: ['auth', 'cartUser'], // luu strorage
     backlist: ['products'] // k luu vaoo storage
 }
 
 
 const rootReducer = combineReducers({
-    product: Products
+    [productApi.reducerPath]: productReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
-    reducer: persistedReducer
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware:any)=>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }).concat(productApi.middleware)
 })
 
 
