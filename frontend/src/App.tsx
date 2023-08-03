@@ -11,25 +11,24 @@ import CategoryList from "./page/admin/categories/CategoryList";
 import CategoryAdd from "./page/admin/categories/CategoryAdd";
 import CategoryEdit from "./page/admin/categories/CategoryEdit";
 import WebsiteLayout from "./page/layouts/WebsiteLayout";
+import Home from "./conponent/Home";
+import Product_detail from "./conponent/Product-detail";
 
 function App() {
   return (
     <>
       <Routes>
-<<<<<<< HEAD
-        <Route path='/'>
-            <Route index element={<Login/>} />
-            <Route path="register" element={<Register/>} />
-            <Route path="login" element={<Login/>} />
-            <Route path="products" element={<ListPoduct/>} />
-=======
-        <Route path="/" element={<WebsiteLayout/> }>
+        <Route path="/" element={<WebsiteLayout />}>
+          <Route index element={<Home />} />
+          <Route path="product_detail" element={<Product_detail />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="products" element={<ListPoduct />} />
           <Route index element={<Login />} />
           <Route path="signin" element={<Login />} />
           <Route path="signup" element={<Register />} />
->>>>>>> efa70f1feba5064fcdae5f807cbca99118df8d27
         </Route>
-        <Route path="admin" element={<AdminLayout/> } >
+        <Route path="admin" element={<AdminLayout />} >
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products">
