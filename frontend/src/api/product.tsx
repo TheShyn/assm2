@@ -34,18 +34,26 @@ const productApi = createApi({
             query: (slug)=> `/products/${slug}`
         }),
         addProduct: builder.mutation({
-            query: (product:IProductApi)=>({
+            query: (data:IProductApi)=>({
                 url: `/products`,
                 method:"POST",
-                body: product
+                body: data
             }),
             invalidatesTags: ['Product']
         }),
         updateProduct: builder.mutation<any, any>({
-            query: (product:IProductApi)=>({
-                url: `/products/${product.id}`,
+            query: (data:IProductApi)=>({
+                url: `/products/${data.id}`,
                 method:"PATCH",
-                body: product.data
+                body: data.data
+            }),
+            invalidatesTags: ['Product']
+        }),
+        uploadImage: builder.mutation<any, any>({
+            query: (data:any)=>({
+                url: `/upload/cloudinary-upload`,
+                method:"POST",
+                body: data
             }),
             invalidatesTags: ['Product']
         })
@@ -53,6 +61,6 @@ const productApi = createApi({
 })
 
 
-export const {useGetProductsQuery, useGetProductBySlugQuery, useAddProductMutation, useUpdateProductMutation} = productApi
+export const {useGetProductsQuery, useGetProductBySlugQuery, useAddProductMutation, useUpdateProductMutation, useUploadImageMutation} = productApi
 export const productReducer = productApi.reducer
 export default productApi
