@@ -13,6 +13,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 import Products from '../Slices/Products';
 import productApi, { productReducer } from '../api/product';
+import categoryApi, { categoryReducer } from '../api/categories';
+import authApi, { authReducer } from '../api/auth';
 const persistConfig = {
     key: 'root',
     storage,
@@ -22,7 +24,9 @@ const persistConfig = {
 
 
 const rootReducer = combineReducers({
-    [productApi.reducerPath]: productReducer
+    [productApi.reducerPath]: productReducer,
+    [categoryApi.reducerPath]: categoryReducer,
+    [authApi.reducerPath]: authReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -35,6 +39,8 @@ const store = configureStore({
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
         }).concat(productApi.middleware)
+        .concat(categoryApi.middleware)
+        .concat(authApi.middleware)
 })
 
 

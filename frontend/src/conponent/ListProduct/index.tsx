@@ -41,7 +41,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/men-01.jpg" alt=""/>
+                            <img src="src/assets/images/men-01.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Classic Spring</h4>
@@ -66,7 +66,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/men-02.jpg" alt=""/>
+                            <img src="src/assets/images/men-02.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Air Force 1 X</h4>
@@ -91,7 +91,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/men-03.jpg" alt=""/>
+                            <img src="src/assets/images/men-03.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Love Nana ‘20</h4>
@@ -116,7 +116,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/women-01.jpg" alt=""/>
+                            <img src="src/assets/images/women-01.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>New Green Jacket</h4>
@@ -141,7 +141,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/women-02.jpg" alt=""/>
+                            <img src="src/assets/images/women-02.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Classic Dress</h4>
@@ -166,7 +166,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/women-03.jpg" alt=""/>
+                            <img src="src/assets/images/women-03.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Spring Collection</h4>
@@ -191,7 +191,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/kid-01.jpg" alt=""/>
+                            <img src="src/assets/images/kid-01.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>School Collection</h4>
@@ -216,7 +216,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/kid-02.jpg" alt=""/>
+                            <img src="src/assets/images/kid-02.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Summer Cap</h4>
@@ -241,7 +241,7 @@ const ListProduct = (props: Props) => {
                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/kid-03.jpg" alt=""/>
+                            <img src="src/assets/images/kid-03.jpg" alt=""/>
                         </div>
                         <div className="down-content">
                             <h4>Classic Kid</h4>
