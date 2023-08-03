@@ -18,7 +18,7 @@ const Home = (props: Props) => {
                                     <a href="#">Purchase Now!</a>
                                 </div>
                             </div>
-                            <img src="http://127.0.0.1:5500/assets/images/left-banner-image.jpg" alt=""/>
+                            <img src="../../../src/assets/images/left-banner-image.jpg" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const Home = (props: Props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="http://127.0.0.1:5500/assets/images/baner-right-image-01.jpg"/>
+                                        <img src="../../../src/assets/images/baner-right-image-01.jpg"/>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@ const Home = (props: Props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="http://127.0.0.1:5500/assets/images/baner-right-image-02.jpg"/>
+                                        <img src="../../../src/assets/images/baner-right-image-02.jpg"/>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@ const Home = (props: Props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="http://127.0.0.1:5500/assets/images/baner-right-image-03.jpg"/>
+                                        <img src="../../../src/assets/images/baner-right-image-03.jpg"/>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@ const Home = (props: Props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="http://127.0.0.1:5500/assets/images/baner-right-image-04.jpg"/>
+                                        <img src="../../../src/assets/images/baner-right-image-04.jpg"/>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/men-01.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/men-01.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>Classic Spring</h4>
@@ -181,7 +181,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/women-01.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/women-01.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>New Green Jacket</h4>
@@ -204,7 +204,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/women-02.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/women-02.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>classNameic Dress</h4>
@@ -227,7 +227,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/women-03.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/women-03.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>Spring Collection</h4>
@@ -250,7 +250,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/women-01.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/women-01.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>classNameic Spring</h4>
@@ -295,7 +295,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/kid-01.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/kid-01.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>School Collection</h4>
@@ -318,7 +318,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/kid-02.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/kid-02.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>Summer Cap</h4>
@@ -341,7 +341,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/kid-03.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/kid-03.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>Classic Kid</h4>
@@ -364,7 +364,7 @@ const Home = (props: Props) => {
                                             <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="http://127.0.0.1:5500/assets/images/kid-01.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/kid-01.jpg" alt=""/>
                                 </div>
                                 <div className="down-content">
                                     <h4>Classic Spring</h4>
@@ -412,12 +412,12 @@ const Home = (props: Props) => {
                             </div>
                             <div className="col-lg-6">
                                 <div className="first-image">
-                                    <img src="http://127.0.0.1:5500/assets/images/explore-image-01.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/explore-image-01.jpg" alt=""/>
                                 </div>
                             </div>
                             <div className="col-lg-6">
                                 <div className="second-image">
-                                    <img src="http://127.0.0.1:5500/assets/images/explore-image-02.jpg" alt=""/>
+                                    <img src="../../../src/assets/images/explore-image-02.jpg" alt=""/>
                                 </div>
                             </div>
                             <div className="col-lg-6">

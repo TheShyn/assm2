@@ -29,19 +29,19 @@ const Product_detail = (props: Props) => {
                     <div className="swiper-container">
                         <div className="swiper-wrapper">
                             <div className="swiper-slide">
-                                <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/lg/product1.webp" alt="product image"/>
+                                <img src="../../../src/assets/images/single-product/lg/product1.webp" alt="product image"/>
                             </div>
                             <div className="swiper-slide">
-                                <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/lg/product2.webp" alt="product image"/>
+                                <img src="../../../src/assets/images/single-product/lg/product2.webp" alt="product image"/>
                             </div>
                             <div className="swiper-slide">
-                                <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/lg/product3.webp" alt="product image"/>
+                                <img src="../../../src/assets/images/single-product/lg/product3.webp" alt="product image"/>
                             </div>
                             <div className="swiper-slide">
-                                <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/lg/product4.webp" alt="product image"/>
+                                <img src="../../../src/assets/images/single-product/lg/product4.webp" alt="product image"/>
                             </div>
                             <div className="swiper-slide">
-                                <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/lg/product5.webp" alt="product image"/>
+                                <img src="../../../src/assets/images/single-product/lg/product5.webp" alt="product image"/>
                             </div>
                         </div>
                     </div>
@@ -53,27 +53,27 @@ const Product_detail = (props: Props) => {
                         <div className="swiper-wrapper">
                             <div className="swiper-slide">
                                 <a href="javascript:void(0)">
-                                    <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/sm/product1.webp" alt="product image"/>
+                                    <img src="../../../src/assets/images/single-product/sm/product1.webp" alt="product image"/>
                                 </a>
                             </div>
                             <div className="swiper-slide">
                                 <a href="javascript:void(0)">
-                                    <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/sm/product2.webp" alt="product image"/>
+                                    <img src="../../../src/assets/images/single-product/sm/product2.webp" alt="product image"/>
                                 </a>
                             </div>
                             <div className="swiper-slide">
                                 <a href="javascript:void(0)">
-                                    <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/sm/product3.webp" alt="product image"/>
+                                    <img src="../../../src/assets/images/single-product/sm/product3.webp" alt="product image"/>
                                 </a>
                             </div>
                             <div className="swiper-slide">
                                 <a href="javascript:void(0)">
-                                    <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/sm/product4.webp" alt="product image"/>
+                                    <img src="../../../src/assets/images/single-product/sm/product4.webp" alt="product image"/>
                                 </a>
                             </div>
                             <div className="swiper-slide">
                                 <a href="javascript:void(0)">
-                                    <img src="http://127.0.0.1:5501/Template_Asm2/assets/images/single-product/sm/product5.webp" alt="product image"/>
+                                    <img src="../../../src/assets/images/single-product/sm/product5.webp" alt="product image"/>
                                 </a>
                             </div>
                         </div>
@@ -158,12 +158,12 @@ const Product_detail = (props: Props) => {
                 </div>
 
                 <div className="flex flex-wrap">
-                    <a href="#" className="mr-2"><img src="http://127.0.0.1:5501/Template_Asm2/assets/images/payment/amazon.svg" alt="payment icon"/></a>
-                    <a href="#" className="mr-2"><img src="http://127.0.0.1:5501/Template_Asm2/assets/images/payment/apple-pay.svg" alt="payment icon"/></a>
-                    <a href="#" className="mr-2"><img src="http://127.0.0.1:5501/Template_Asm2/assets/images/payment/bitcoin.svg" alt="payment icon"/></a>
-                    <a href="#" className="mr-2"><img src="http://127.0.0.1:5501/Template_Asm2/assets/images/payment/google-pay.svg" alt="payment icon"/></a>
-                    <a href="#" className="mr-2"><img src="http://127.0.0.1:5501/Template_Asm2/assets/images/payment/paypal.svg" alt="payment icon"/></a>
-                    <a href="#" className="mr-2"><img src="http://127.0.0.1:5501/Template_Asm2/assets/images/payment/visa.svg" alt="payment icon"/></a>
+                    <a href="#" className="mr-2"><img src="../../../src/assets/images/payment/amazon.svg" alt="payment icon"/></a>
+                    <a href="#" className="mr-2"><img src="../../../src/assets/images/payment/apple-pay.svg" alt="payment icon"/></a>
+                    <a href="#" className="mr-2"><img src="../../../src/assets/images/payment/bitcoin.svg" alt="payment icon"/></a>
+                    <a href="#" className="mr-2"><img src="../../../src/assets/images/payment/google-pay.svg" alt="payment icon"/></a>
+                    <a href="#" className="mr-2"><img src="../../../src/assets/images/payment/paypal.svg" alt="payment icon"/></a>
+                    <a href="#" className="mr-2"><img src="../../../src/assets/images/payment/visa.svg" alt="payment icon"/></a>
                 </div>
 
             </div>
