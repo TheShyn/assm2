@@ -13,6 +13,7 @@ import CategoryEdit from "./page/admin/categories/CategoryEdit";
 import WebsiteLayout from "./page/layouts/WebsiteLayout";
 import Home from "./conponent/Home";
 import Product_detail from "./conponent/Product-detail";
+import Cart from "./conponent/Cart";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="product_detail" element={<Product_detail />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="products" element={<ListPoduct />} />
           <Route index element={<Login />} />
           <Route path="signin" element={<Login />} />
