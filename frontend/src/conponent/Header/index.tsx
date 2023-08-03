@@ -12,7 +12,7 @@ const Header = (props: Props) => {
               <nav className="main-nav">
 
                 <a href="index.html" className="logo">
-                  <img src="http://127.0.0.1:5500/assets/images/logo.png"/>
+                  <img src="src/assets/images/logo.png"/>
                 </a>
 
                 <ul className="nav">
