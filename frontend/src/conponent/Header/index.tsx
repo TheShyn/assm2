@@ -16,7 +16,7 @@ const Header = (props: Props) => {
                 </a>
 
                 <ul className="nav">
-                  <li className="scroll-to-section"><a href="#top" className="active">Home</a></li>
+                  <li className="scroll-to-section"><a href="home" className="active">Home</a></li>
                   <li className="scroll-to-section"><a href="#men">Men's</a></li>
                   <li className="scroll-to-section"><a href="#women">Women's</a></li>
                   <li className="scroll-to-section"><a href="#kids">Kid's</a></li>
@@ -24,7 +24,7 @@ const Header = (props: Props) => {
                     <a href="javascript:;">Pages</a>
                     <ul>
                       <li><a href="about.html">About Us</a></li>
-                      <li><a href="products.html">Products</a></li>
+                      <li><a href="products">Products</a></li>
                       <li><a href="single-product.html">Single Product</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
                     </ul>
