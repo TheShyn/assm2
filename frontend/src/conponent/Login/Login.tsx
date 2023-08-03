@@ -7,7 +7,7 @@ const Login12 = (props: Props) => {
     <div className="pb-24 mt-16">
       <div className="container">
 
-        <div className="grid grid-cols-12 gap-x-5">
+        <div className="grid grid-cols-12 gap-x-5 mt-60">
           <div className="col-span-12">
             <div id="maintab">
               <ul className="custom-tab-nav flex flex-wrap items-center justify-center mb-10">
