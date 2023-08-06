@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-import { useAddProductMutation, useGetProductBySlugQuery, useGetProductsQuery } from '../../api/product';
 
 type Props = {}
 

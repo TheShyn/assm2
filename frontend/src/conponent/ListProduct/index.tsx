@@ -4,8 +4,10 @@ import { useGetProductsQuery } from "../../api/product";
 
 const ListProduct = () => {
     const dispatch = useAppDispatch();
-    const { data: products } = useGetProductsQuery();
-
+    // const { data: products } = useGetProductsQuery();
+    const { data, isLoading } = useGetProductsQuery()
+    console.log(data);
+    if (isLoading) return <>loading...</>
     return (
         <div>
             <div className="page-heading" id="top">
@@ -34,33 +36,42 @@ const ListProduct = () => {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-4">
-                            <div className="item">
-                                <div className="thumb">
-                                    <div className="hover-content">
-                                        <ul>
-                                            <li><a href="single-product.html"><i className="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i className="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
+                        {data.data.map((item:any) => {
+                            console.log(item);
+                            
+
+                            return (
+                                <div className="col-lg-4">
+                                    <div className="item">
+                                        <div className="thumb">
+                                            <div className="hover-content">
+                                                <ul>
+                                                    <li><a href="single-product.html"><i className="fa fa-eye"></i></a></li>
+                                                    <li><a href="single-product.html"><i className="fa fa-star"></i></a></li>
+                                                    <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <img src="src/assets/images/women-01.jpg" alt="" />
+                                        </div>
+
+
+                                        <div className="down-content">
+                                            <h4>{item?.name}</h4>
+                                            <span>${item?.price}</span>
+                                            <ul className="stars">
+                                                <li><i className="fa fa-star"></i></li>
+                                                <li><i className="fa fa-star"></i></li>
+                                                <li><i className="fa fa-star"></i></li>
+                                                <li><i className="fa fa-star"></i></li>
+                                                <li><i className="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+
                                     </div>
-                                    <img src="src/assets/images/women-01.jpg" alt="" />
                                 </div>
-                                {products?.map((item: any) => {
-                                    <div className="down-content">
-                                        <h4>{item.name}</h4>
-                                        <span>${item.price}</span>
-                                        <ul className="stars">
-                                            <li><i className="fa fa-star"></i></li>
-                                            <li><i className="fa fa-star"></i></li>
-                                            <li><i className="fa fa-star"></i></li>
-                                            <li><i className="fa fa-star"></i></li>
-                                            <li><i className="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                })}
-                            </div>
-                        </div>
+
+                            )
+                        })}
 
                     </div>
                 </div>
