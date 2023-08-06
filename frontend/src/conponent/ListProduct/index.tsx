@@ -36,7 +36,7 @@ const ListProduct = () => {
                 </div>
                 <div className="container">
                     <div className="row">
-                        {data.data.map((item:any) => {
+                        {data?.data?.map((item:any) => {
                             return (
                                 <div className="col-lg-4">
                                     <div className="item">

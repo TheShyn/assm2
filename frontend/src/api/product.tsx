@@ -49,6 +49,14 @@ const productApi = createApi({
             }),
             invalidatesTags: ['Product']
         }),
+        removeProduct: builder.mutation<any, any>({
+            query: (id)=>({
+                url: `/products/${id}`,
+                method:"DELETE",
+                // body: data.data
+            }),
+            invalidatesTags: ['Product']
+        }),
         uploadImage: builder.mutation<any, any>({
             query: (data:any)=>({
                 url: `/upload/cloudinary-upload`,
