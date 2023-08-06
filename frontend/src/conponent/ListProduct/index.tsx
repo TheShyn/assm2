@@ -38,10 +38,14 @@ const ListProduct = () => {
                 </div>
                 <div className="container">
                     <div className="row">
+<<<<<<< HEAD
                         {data?.data?.map((item: any) => {
                             console.log(item);
 
 
+=======
+                        {data?.data?.map((item:any) => {
+>>>>>>> daedbea8ba3c9c44bad1c233a864bb4c99c5a807
                             return (
                                 <div className="col-lg-4">
                                     <div className="item">

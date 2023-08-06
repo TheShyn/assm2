@@ -127,10 +127,10 @@ export const deleteCate = async function (req,res){
                         message: 'Category not found'
                     })
                 }
-                await Products.updateMany({category:id},{$set:{category:'64822a45fe4657527476ecd9'}})
-                const updateProduct = await Products.find({ category: "64822a45fe4657527476ecd9" });
+                await Products.updateMany({category:id},{$set:{category:'64ca34ed3dd995caf0f8d3cb'}})
+                const updateProduct = await Products.find({ category: "64ca34ed3dd995caf0f8d3cb" });
                 const updatedProductIds = updateProduct.map((product) => product._id.toString());
-                await Categories.findByIdAndUpdate('64822a45fe4657527476ecd9', {
+                await Categories.findByIdAndUpdate('64ca34ed3dd995caf0f8d3cb', {
                     $addToSet: {
                         products: updatedProductIds,
                     },
