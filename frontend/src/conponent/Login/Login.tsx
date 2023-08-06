@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+// import { useLoginMutation } from '../../api/auth'
 
-type Props = {}
 
-const Login12 = (props: Props) => {
+
+const Login12 = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // const newUser = {
+    //   email: email,
+    //   password: password,
+    // };
+    if (email === 'user@example.com' && password === '123456') {
+      console.log('Đăng nhập thành công!');
+    } else {
+      alert('Email hoặc mật khẩu không chính xác!');
+    }
+  };
+
   return (
     <div className="pb-24 mt-16">
       <div className="container">
@@ -18,9 +35,9 @@ const Login12 = (props: Props) => {
               <div>
                 <div id="login" className="custom-tab-content">
                   <div className="p-8 md:p-20 shadow max-w-4xl mx-auto">
-                    <form action="#" method="post">
-                      <input className="border border-solid border-gray-300 w-full py-1 px-5 mb-5 placeholder-current text-dark h-12 focus:outline-none text-base" type="text" name="user-name" placeholder="Username" />
-                      <input className="border border-solid border-gray-300 w-full py-1 px-5 mb-5 placeholder-current text-dark h-12 focus:outline-none text-base" type="password" name="user-password" placeholder="Password" />
+                    <form action="#" method="post" onSubmit={handleLogin}>
+                      <input className="border border-solid border-gray-300 w-full py-1 px-5 mb-5 placeholder-current text-dark h-12 focus:outline-none text-base" type="text" name="user-name" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                      <input className="border border-solid border-gray-300 w-full py-1 px-5 mb-5 placeholder-current text-dark h-12 focus:outline-none text-base" type="password" name="user-password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                       <div className="button-box">
                         <div className="mb-4">
                           <input id="remember" type="checkbox" />

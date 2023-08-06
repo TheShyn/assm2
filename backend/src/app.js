@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import connect from "./config/db";
-import Route from '../routers/index'
+import Route from './routers/index'
 
 
 
