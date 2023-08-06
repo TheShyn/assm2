@@ -37,9 +37,6 @@ const ListProduct = () => {
                 <div className="container">
                     <div className="row">
                         {data.data.map((item:any) => {
-                            console.log(item);
-                            
-
                             return (
                                 <div className="col-lg-4">
                                     <div className="item">
