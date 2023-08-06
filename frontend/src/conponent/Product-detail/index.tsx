@@ -9,6 +9,7 @@ const Product_detail = (props: Props) => {
     console.log(slug)
     const { data } = useGetProductBySlugQuery(slug)
     console.log(data);
+    const item = data?.data
 
     const [count, Setcount] = useState(1)
     const countId = count;
@@ -23,7 +24,7 @@ const Product_detail = (props: Props) => {
         }
     }
     return (
-        <div className="tw-py-9 tw-bg-gray-light">
+        <div className="tw-py-9 tw-bg-gray-light mt-[100px]">
            
             <div className="py-24">
 
@@ -36,19 +37,19 @@ const Product_detail = (props: Props) => {
                                     <div className="swiper-container">
                                         <div className="swiper-wrapper">
                                             <div className="swiper-slide">
-                                                <img src="../../../src/assets/images/single-product/lg/product1.webp" alt="product image" />
+                                                <img src={item?.images?.[0]} alt="product image" className='min-w-[700px] min-h[500px]'/>
                                             </div>
                                             <div className="swiper-slide">
-                                                <img src="../../../src/assets/images/single-product/lg/product2.webp" alt="product image" />
+                                                <img src={item?.images?.[2]} alt="product image" />
                                             </div>
                                             <div className="swiper-slide">
-                                                <img src="../../../src/assets/images/single-product/lg/product3.webp" alt="product image" />
+                                                <img src={item?.images?.[3]} alt="product image" />
                                             </div>
                                             <div className="swiper-slide">
-                                                <img src="../../../src/assets/images/single-product/lg/product4.webp" alt="product image" />
+                                                <img src={item?.images?.[4]} alt="product image" />
                                             </div>
                                             <div className="swiper-slide">
-                                                <img src="../../../src/assets/images/single-product/lg/product5.webp" alt="product image" />
+                                                <img src={item?.images?.[5]} alt="product image" />
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +61,7 @@ const Product_detail = (props: Props) => {
                                         <div className="swiper-wrapper">
                                             <div className="swiper-slide">
                                                 <a href="javascript:void(0)">
-                                                    <img src="../../../src/assets/images/single-product/sm/product1.webp" alt="product image" />
+                                                    <img src={item?.images?.[0]} alt="product image" />
                                                 </a>
                                             </div>
 

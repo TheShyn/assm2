@@ -2,6 +2,7 @@ import React from 'react'
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Space, Table, Typography } from "antd";
 import { NavLink } from "react-router-dom";
+import { useGetCategoriesQuery } from '../../../api/categories';
 
 
 const { Text, Title } = Typography;
@@ -9,6 +10,18 @@ const { Text, Title } = Typography;
 type Props = {}
 
 const CategoryList = (props: Props) => {
+  const { data : categories, isLoading} = useGetCategoriesQuery()
+
+  console.log("data" , categories);
+  const confirm = async (product: string) => {
+    const confirm = window.confirm('Are you sure you want to...?');
+    if (confirm) {
+      console.log("xóa", product);
+
+      
+    }
+  }
+
   const columns = [
     {
       title: "ID",
@@ -27,37 +40,21 @@ const CategoryList = (props: Props) => {
           <NavLink to={"/admin/category/edit/" + record.key}>
             <EditOutlined />
           </NavLink>
-          <Text type="danger">
+          <Text type="danger"  onClick={()=> confirm(record)}> 
             <DeleteOutlined />
           </Text>
         </Space>
       ),
     },
   ];
-  // const data = categories?.map((item, index) => {
-  //   return {
-  //     key: index + 1,
-  //     _id: item._id,
-  //     name: item.name,
-  //   };
-  // });
-  const data: any[] = [
-    {
-      key: '1',
-      name: 'Category 1',
-      
-    },
-    {
-      key: '2',
-      name: 'Category 2',
-     
-    },
-    {
-      key: '3',
-      name: 'Category 3',
-     
-    },
-  ];
+  const data = categories?.data?.map((item :any, index :any) => {
+    return {
+      key: index + 1,
+      _id: item._id,
+      name: item.name,
+    };
+  });
+ 
   return (
     <section className="home-section">
     <Breadcrumb>
@@ -69,7 +66,8 @@ const CategoryList = (props: Props) => {
       <Button type="primary" style={{ marginBottom: 16 }} ghost>
         <NavLink to={"add"}>Add Category</NavLink>
       </Button>
-      <Table dataSource={data} columns={columns} />
+      {isLoading ? <div>...IsLoading</div> : <Table dataSource={data} columns={columns} />}
+      
     </div>
   </section>
   )
