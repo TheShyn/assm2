@@ -2,7 +2,7 @@ import React from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Space, Table, Typography } from "antd";
 import { NavLink } from "react-router-dom";
-import { useGetCategoriesQuery } from "../../../api/categories";
+import { useGetCategoriesQuery, useRemoveCategoryMutation } from "../../../api/categories";
 
 const { Text, Title } = Typography;
 
@@ -10,13 +10,17 @@ type Props = {};
 
 const CategoryList = (props: Props) => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
-  // const [] = use
-  const confirm = async (product: string) => {
+  // const [] = u
+  const [removeCategory] = useRemoveCategoryMutation();
+  console.log("categories", categories);
+  
+  const confirm = async (record: any) => {
     const confirm = window.confirm("Are you sure you want to...?");
     if (confirm) {
-      console.log("xóa", product);
+      removeCategory(record?._id);
     }
   };
+
 
   const columns = [
     {

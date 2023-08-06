@@ -43,7 +43,7 @@ const categoryApi = createApi({
             }),
             invalidatesTags: ['Categories']
         }),
-        removeProduct: builder.mutation<any, any>({
+        removeCategory: builder.mutation<any, any>({
             query: (id)=>({
                 url: `/categories/${id}`,
                 method:"DELETE",
@@ -55,6 +55,6 @@ const categoryApi = createApi({
 })
 
 
-export const {useGetCategoriesQuery, useGetCategoryByIdQuery, useAddCategoryMutation, useUpdateCategoryMutation} = categoryApi
+export const {useGetCategoriesQuery, useGetCategoryByIdQuery, useAddCategoryMutation, useUpdateCategoryMutation , useRemoveCategoryMutation} = categoryApi
 export const categoryReducer = categoryApi.reducer
 export default categoryApi
