@@ -71,6 +71,6 @@ const productApi = createApi({
 })
 
 
-export const {useGetProductsQuery, useGetProductBySlugQuery, useAddProductMutation, useUpdateProductMutation, useUploadImageMutation} = productApi
+export const {useGetProductsQuery, useGetProductBySlugQuery, useAddProductMutation, useUpdateProductMutation, useUploadImageMutation , useRemoveProductMutation} = productApi
 export const productReducer = productApi.reducer
 export default productApi

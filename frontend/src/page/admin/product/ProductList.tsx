@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Space, Typography, Button, Breadcrumb, Image } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import { useGetProductsQuery } from '../../../api/product';
+import { useGetProductsQuery, useRemoveProductMutation } from '../../../api/product';
 
 
 const { Text, Title } = Typography;
@@ -12,8 +12,16 @@ type Props = {}
 const ProductList = (props: Props) => {
     const { data  , isLoading } = useGetProductsQuery();
     console.log("products" ,data);
-    // const { data } = products
-
+    const [removeProduct , {isSuccess}] = useRemoveProductMutation()
+    // console.log("dataRe" ,dataRe);
+    
+    const removeConfirm = async (product : any) => {
+      const confirm = window.confirm('Are you sure you want to remove ?')
+      if(confirm){
+        // console.log("delete" , product?._id);
+        removeProduct(product?._id)        
+      }
+    }
     
     const columns = [
         {
@@ -59,7 +67,7 @@ const ProductList = (props: Props) => {
               <NavLink to={"/admin/products/edit/" + record.key}>
                 <EditOutlined />
               </NavLink>
-              <Text type="danger" >
+              <Text type="danger" onClick={() => removeConfirm(record)}>
                 <DeleteOutlined />
               </Text>
             </Space>

@@ -11,8 +11,7 @@ type Props = {}
 
 const CategoryList = (props: Props) => {
   const { data : categories, isLoading} = useGetCategoriesQuery()
-
-  console.log("data" , categories);
+  // const []
   const confirm = async (product: string) => {
     const confirm = window.confirm('Are you sure you want to...?');
     if (confirm) {
