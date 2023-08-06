@@ -16,7 +16,6 @@ type FieldType = {
 };
 
 const Login12 = () => {
-
   return (
     <div className="pb-24 mt-16">
       <div className="container">

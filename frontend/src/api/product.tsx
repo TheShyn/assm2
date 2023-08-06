@@ -14,7 +14,7 @@ interface IProductApi {
 }
 
 const productApi = createApi({
-    reducerPath: 'product',
+    reducerPath: 'products',
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/api',
@@ -31,7 +31,9 @@ const productApi = createApi({
             providesTags: ['Product']
         }),
         getProductBySlug: builder.query<any, void>({
-            query: (slug) => `/products/${slug}`
+            query: (slug) => `/products/${slug}`,
+            providesTags: ['Product']
+
         }),
         addProduct: builder.mutation({
             query: (data: IProductApi) => ({
