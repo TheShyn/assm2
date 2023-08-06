@@ -6,10 +6,11 @@ import Login12 from '../../../conponent/Login/Login'
 type Props = {}
 
 const Login = (props: Props) => {
+  console.log('asds')
   return (
     <div>
       <div>
-      <Login12/>
+        <Login12 />
       </div>
     </div>
   )
