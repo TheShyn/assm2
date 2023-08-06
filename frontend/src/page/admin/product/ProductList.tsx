@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Space, Typography, Button, Breadcrumb, Image } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
+import { useGetProductsQuery } from '../../../api/product';
 
 
 const { Text, Title } = Typography;
@@ -9,6 +10,11 @@ const { Text, Title } = Typography;
 type Props = {}
 
 const ProductList = (props: Props) => {
+    const { data  , isLoading } = useGetProductsQuery();
+    console.log("products" ,data);
+    // const { data } = products
+
+    
     const columns = [
         {
           title: "ID",
@@ -22,11 +28,11 @@ const ProductList = (props: Props) => {
         },
         {
           title: "Image",
-          dataIndex: "image",
-          key: "image",
-          render: (image: string) => (
+          dataIndex: "images",
+          key: "images",
+          render: (images: string) => (
             <a>
-              <img src={image} alt="" width={200} />
+              <img src={images} alt="" width={200} />
             </a>
           ),
         },
@@ -41,9 +47,9 @@ const ProductList = (props: Props) => {
           key: "category",
         },
         {
-          title: "Description",
-          dataIndex: "description",
-          key: "description",
+          title: "quantity",
+          dataIndex: "quantity",
+          key: "quantity",
         },
         {
           title: "Action",
@@ -60,40 +66,22 @@ const ProductList = (props: Props) => {
           ),
         },
       ];
-    //   const data = products?.map((item, index) => {
-    //     return {
-    //       key: index + 1,
-    //       _id: item._id,
-    //       name: item.name,
-    //       price: Currency(item.price),
-    //       category: item.category.name,
-    //       description: item.description,
-    //       image: item.image,
-    //     };
-    //   });     
-    const data: any[] = [
-      {
-        key: '1',
-        name: 'John Brown',
-        price: 32,
-        category: 'New York No. 1 Lake Park',
-        description: 'nice developer',
-      },
-      {
-        key: '2',
-        name: 'Jim Green',
-        price: 42,
-        category: 'London No. 1 Lake Park',
-        description: 'loser',
-      },
-      {
-        key: '3',
-        name: 'Joe Black',
-        price: 32,
-        category: 'Sydney No. 1 Lake Park',
-        description: 'cool teacher',
-      },
-    ];
+      const dataProducts = data.data?.map((item :any, index :any) => {
+        return {
+          ...item,
+          category: item.category.name,
+          images: item.images[0],
+          key: index + 1,
+
+          // _id: item._id,
+          // name: item.name,
+          // price: item.price,
+          // category: item.category.name,
+          // description: item.description,
+          // image: item.image,
+        };
+      });     
+ 
   return (
     <div>
          <section className="home-section">
@@ -106,7 +94,8 @@ const ProductList = (props: Props) => {
         <Button type="primary" style={{ marginBottom: 16 }} ghost>
           <NavLink to={"add"}>Add Product</NavLink>
         </Button>
-        <Table dataSource={data} columns={columns} />
+        {isLoading ? <div>...IsLoading</div> :  <Table dataSource={dataProducts} columns={columns} />  }
+        {/* <Table dataSource={data} columns={columns} /> */}
       </div>
     </section>
     </div>
