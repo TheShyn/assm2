@@ -1,12 +1,13 @@
 import React from "react";
 import { useAppDispatch } from "../../app/hook";
-import { useGetProductsQuery } from "../../api/product";
+import { useGetProductBySlugQuery, useGetProductsQuery } from "../../api/product";
+import { Link } from "react-router-dom";
 
 const ListProduct = () => {
     const dispatch = useAppDispatch();
     // const { data: products } = useGetProductsQuery();
     const { data, isLoading } = useGetProductsQuery()
-    console.log(data);
+    console.log(data.data);
     if (isLoading) return <>loading...</>
     return (
         <div>
@@ -36,9 +37,9 @@ const ListProduct = () => {
                 </div>
                 <div className="container">
                     <div className="row">
-                        {data?.data?.map((item:any) => {
+                        {data?.data?.map((item: any) => {
                             console.log(item);
-                            
+
 
                             return (
                                 <div className="col-lg-4">
@@ -46,7 +47,10 @@ const ListProduct = () => {
                                         <div className="thumb">
                                             <div className="hover-content">
                                                 <ul>
-                                                    <li><a href="single-product.html"><i className="fa fa-eye"></i></a></li>
+                                                    <Link to={`/products/${item?.slug}`}>
+                                                        <li><a href="single-product.html"><i className="fa fa-eye"></i></a></li>
+                                                    </Link>
+
                                                     <li><a href="single-product.html"><i className="fa fa-star"></i></a></li>
                                                     <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                                 </ul>
