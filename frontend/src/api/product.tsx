@@ -30,7 +30,7 @@ const productApi = createApi({
             query: ()=> `/products`,
             providesTags: ['Product']
         }),
-        getProductBySlug: builder.query<any , void>({
+        getProductBySlug: builder.query<any , any>({
             query: (slug)=> `/products/${slug}`,
             providesTags: ['Product']
 

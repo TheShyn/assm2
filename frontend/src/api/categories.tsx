@@ -42,7 +42,15 @@ const categoryApi = createApi({
                 body: data.data
             }),
             invalidatesTags: ['Categories']
-        })
+        }),
+        removeProduct: builder.mutation<any, any>({
+            query: (id)=>({
+                url: `/categories/${id}`,
+                method:"DELETE",
+                // body: data.data
+            }),
+            invalidatesTags: ['Categories']
+        }),
     })
 })
 
