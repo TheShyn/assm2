@@ -6,7 +6,7 @@ const ListProduct = () => {
     const dispatch = useAppDispatch();
     // const { data: products } = useGetProductsQuery();
     const { data, isLoading } = useGetProductsQuery()
-    console.log(data);
+    // console.log(data);
     if (isLoading) return <>loading...</>
     return (
         <div>
