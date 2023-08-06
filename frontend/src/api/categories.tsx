@@ -24,7 +24,7 @@ const categoryApi = createApi({
             query: ()=> `/categories`,
             providesTags: ['Categories']
         }),
-        getCategoryById: builder.query<any , void>({
+        getCategoryById: builder.query<any , number | string>({
             query: (id)=> `/categories/${id}`
         }),
         addCategory: builder.mutation({

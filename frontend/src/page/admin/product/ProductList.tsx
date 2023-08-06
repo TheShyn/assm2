@@ -35,6 +35,11 @@ const ProductList = (props: Props) => {
           render: (text: string) => <a>{text}</a>,
         },
         {
+          title: "quantity",
+          dataIndex: "quantity",
+          key: "quantity",
+        },
+        {
           title: "Image",
           dataIndex: "images",
           key: "images",
@@ -64,7 +69,7 @@ const ProductList = (props: Props) => {
           key: "action",
           render: (record: any) => (
             <Space size="middle">
-              <NavLink to={"/admin/products/edit/" + record.key}>
+              <NavLink to={"/admin/products/edit/" + record?._id}>
                 <EditOutlined />
               </NavLink>
               <Text type="danger" onClick={() => removeConfirm(record)}>
@@ -74,7 +79,7 @@ const ProductList = (props: Props) => {
           ),
         },
       ];
-      const dataProducts = data.data?.map((item :any, index :any) => {
+      const dataProducts = data?.data?.map((item :any, index :any) => {
         return {
           ...item,
           category: item.category.name,
