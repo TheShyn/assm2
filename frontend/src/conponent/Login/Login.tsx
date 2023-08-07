@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Form, Input, message } from 'antd';
+import { useLoginMutation } from '../../api/auth';
+import { useAppDispatch, useAppSelector } from '../../app/hook';
+import { signin } from '../../Slices/Auth';
+import { useNavigate } from 'react-router-dom';
 
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
 
 type FieldType = {
   email?: string;
@@ -16,6 +12,38 @@ type FieldType = {
 };
 
 const Login12 = () => {
+  const [Login] = useLoginMutation()
+  const data = useAppSelector(state => state.user)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const onFinish = async (values: any) => {
+    console.log('Success:', values);
+    try {
+      const data: any = await Login(values);
+
+      const dataUser = {
+        accessToken: data?.data?.accessToken,
+        ...data?.data?.user
+      }
+      if (data?.error) {
+        console.log(data)
+        return message.error(data?.error?.data?.message || 'error')
+      }
+      dispatch(signin(dataUser))
+      message.success("Đăng nhập thành công")
+      setTimeout(() => {
+        navigate('/')
+      }, 1000);
+    } catch (error) {
+
+      console.log(error);
+    }
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
   return (
     <div className="pb-24 mt-16">
       <div className="container">
@@ -65,17 +93,17 @@ const Login12 = () => {
                       >
                         <Input.Password />
                       </Form.Item>
-
+                      {/* 
                       <Form.Item<FieldType>
                         name="remember"
                         valuePropName="checked"
                         wrapperCol={{ offset: 8, span: 16 }}
                       >
                         <Checkbox>Remember me</Checkbox>
-                      </Form.Item>
+                      </Form.Item> */}
 
                       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <button type="submit" className="inline-block leading-none uppercase text-white text-sm bg-dark px-5 py-4 transition-all hover:bg-orange">
+                        <button type="submit" className="rounded-lg inline-block leading-none uppercase text-white text-sm bg-dark px-4 py-3 transition-all hover:bg-orange">
                           <span>Login</span>
                         </button>
                       </Form.Item>

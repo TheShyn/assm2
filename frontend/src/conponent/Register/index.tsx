@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input, InputNumber, message } from 'antd';
+import { useRegisterMutation } from '../../api/auth';
+import { useNavigate } from 'react-router-dom';
 
 const layout = {
   labelCol: { span: 8 },
@@ -16,11 +18,31 @@ const validateMessages = {
   },
 };
 
-const onFinish = (values: any) => {
-  console.log(values);
-};
 
 const Regis = () => {
+  const [register] = useRegisterMutation()
+  const navigate = useNavigate()
+  const onFinish = async (values: any) => {
+    console.log(values);
+    try {
+      const data: any = await register(values)
+      console.log(data)
+      if (data?.error) {
+        console.log()
+        return message.error(data?.error?.data?.message || 'error')
+      }
+      setTimeout(() => {
+        message.success("Đăng ký thành công")
+        return setTimeout(() => {
+          navigate('/signin')
+        }, 1000);
+      }, 1000);
+    } catch (error: any) {
+
+
+    }
+  };
+
   return (
     <div className="pb-24 mt-16">
       <div className="container">
@@ -43,20 +65,42 @@ const Regis = () => {
                       style={{ maxWidth: 600 }}
                       validateMessages={validateMessages}
                     >
-                      <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
+                      <Form.Item name={'username'} label="Username" rules={[{ required: true }]}>
                         <Input />
                       </Form.Item>
-                      <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
+                      <Form.Item name={'email'} label="Email" rules={[{ type: 'email', required: true }]}>
+                        <Input />
+                      </Form.Item>
+                      <Form.Item name={'password'} label="Password" rules={[
+                        { required: true },
+                        { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự!' }
+                      ]}>
+                        <Input />
+                      </Form.Item>
+                      <Form.Item name={'confirmPassword'} label="comfirmPassword" rules={
+                        [
+                          {
+                            required: true
+                          },
+                          ({ getFieldValue }) => ({
+                            validator(_, value) {
+                              if (!value || getFieldValue('password') === value) {
+                                return Promise.resolve();
+                              }
+                              return Promise.reject('Mật khẩu không khớp!');
+                            },
+                          })
+                        ]}>
                         <Input />
                       </Form.Item>
                       {/* <Form.Item name={['user', 'password']} label="Age" rules={[{ type: 'password' }]}>
                         <InputNumber />
                       </Form.Item> */}
 
-                      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                        <Button type="primary" htmlType="submit">
-                          Submit
-                        </Button>
+                      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <button type="submit" className="inline-block rounded-lg leading-none uppercase text-white text-sm bg-dark px-4 py-3 transition-all hover:bg-orange">
+                          <span>Register</span>
+                        </button>
                       </Form.Item>
                     </Form>
 

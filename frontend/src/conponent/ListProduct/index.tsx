@@ -1,10 +1,7 @@
-import React from "react";
-import { useAppDispatch } from "../../app/hook";
-import { useGetProductBySlugQuery, useGetProductsQuery } from "../../api/product";
 import { Link } from "react-router-dom";
+import { useGetProductsQuery } from "../../api/product";
 
 const ListProduct = () => {
-    const dispatch = useAppDispatch();
 
     const { data, isLoading } = useGetProductsQuery()
     console.log(data?.data);

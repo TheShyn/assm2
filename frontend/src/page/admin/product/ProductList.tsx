@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Space, Typography, Button, Breadcrumb, Image } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import { useGetProductsQuery } from '../../../api/product';
+import { useGetProductsQuery, useRemoveProductMutation } from '../../../api/product';
 
 
 const { Text, Title } = Typography;
@@ -11,9 +11,16 @@ type Props = {}
 
 const ProductList = (props: Props) => {
     const { data  , isLoading } = useGetProductsQuery();
-    console.log("products" ,data);
-    // const { data } = products
-
+    const [removeProduct , {isSuccess}] = useRemoveProductMutation()
+    // console.log("dataRe" ,dataRe);
+    
+    const removeConfirm = async (product : any) => {
+      const confirm = window.confirm('Are you sure you want to remove ?')
+      if(confirm){
+        // console.log("delete" , product?._id);
+        removeProduct(product?._id)        
+      }
+    }
     
     const columns = [
         {
@@ -25,6 +32,11 @@ const ProductList = (props: Props) => {
           dataIndex: "name",
           key: "name",
           render: (text: string) => <a>{text}</a>,
+        },
+        {
+          title: "quantity",
+          dataIndex: "quantity",
+          key: "quantity",
         },
         {
           title: "Image",
@@ -56,17 +68,17 @@ const ProductList = (props: Props) => {
           key: "action",
           render: (record: any) => (
             <Space size="middle">
-              <NavLink to={"/admin/products/edit/" + record.key}>
+              <NavLink to={"/admin/products/edit/" + record?.slug}>
                 <EditOutlined />
               </NavLink>
-              <Text type="danger" >
+              <Text type="danger" onClick={() => removeConfirm(record)}>
                 <DeleteOutlined />
               </Text>
             </Space>
           ),
         },
       ];
-      const dataProducts = data.data?.map((item :any, index :any) => {
+      const dataProducts = data?.data?.map((item :any, index :any) => {
         return {
           ...item,
           category: item.category.name,

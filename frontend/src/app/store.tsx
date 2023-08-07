@@ -11,10 +11,11 @@ import {
 } from 'redux-persist';
 
 import storage from 'redux-persist/lib/storage';
-import Products from '../Slices/Products';
 import productApi, { productReducer } from '../api/product';
 import categoryApi, { categoryReducer } from '../api/categories';
 import authApi, { authReducer } from '../api/auth';
+import userSlicer from '../Slices/Auth'
+
 const persistConfig = {
     key: 'root',
     storage,
@@ -27,20 +28,21 @@ const rootReducer = combineReducers({
     [productApi.reducerPath]: productReducer,
     [categoryApi.reducerPath]: categoryReducer,
     [authApi.reducerPath]: authReducer,
+    user: userSlicer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware:any)=>
+    middleware: (getDefaultMiddleware: any) =>
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
         }).concat(productApi.middleware)
-        .concat(categoryApi.middleware)
-        .concat(authApi.middleware)
+            .concat(categoryApi.middleware)
+            .concat(authApi.middleware)
 })
 
 
