@@ -34,7 +34,7 @@ const Regis = () => {
       setTimeout(() => {
         message.success("Đăng ký thành công")
         return setTimeout(() => {
-          navigate('/signin')
+          navigate('/login')
         }, 1000);
       }, 1000);
     } catch (error: any) {

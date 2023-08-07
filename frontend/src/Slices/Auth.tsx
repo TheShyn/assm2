@@ -14,9 +14,13 @@ const userSlicer = createSlice({
         signin(state, action) {
             state.isLogin = true;
             state.user = action.payload
+        },
+        logout(state) {
+            state.isLogin = false;
+            state.user = {}
         }
     }
 })
 
-export const { signin } = userSlicer.actions
+export const { signin, logout } = userSlicer.actions
 export default userSlicer.reducer

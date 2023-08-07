@@ -22,12 +22,12 @@ function App() {
         <Route path="/" element={<WebsiteLayout />}>
           <Route index element={<Home />} />
           <Route path="products/:slug" element={<Product_detail />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
           <Route path="products" element={<ListPoduct />} />
-          <Route path="signin" element={<Login />} />
-          <Route path="signup" element={<Register />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          {/* <Route path="signin" element={<Login />} />
+          <Route path="signup" element={<Register />} /> */}
         </Route>
         {/* <Route path='auth'>
           <Route index element={<Login />} />
