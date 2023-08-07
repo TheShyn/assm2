@@ -3,7 +3,7 @@ import { Breadcrumb, Typography } from "antd";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import swal from "sweetalert";
@@ -60,8 +60,6 @@ const CategoryAdd = (props: Props) => {
   return (
   
     <section className="home-section">
-      <button onClick={handleClick}>Hiển thị thông báo</button>
-      
     <Breadcrumb>
       <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
       <Breadcrumb.Item>Category</Breadcrumb.Item>

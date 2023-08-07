@@ -37,18 +37,18 @@ const schema = yup.object().shape({
     .test("min", "Please re-enter the price", (price) => Number(price) > 0),
   discount: yup
     .string()
-    .required("* Required to enter product price")
+    .required("* Required to enter product discount")
     .test(
       "min",
-      "Please re-enter the price",
+      "Please re-enter the discount",
       (discount) => Number(discount) > 0
     ),
   quantity: yup
     .string()
-    .required("* Required to enter product price")
+    .required("* Required to enter product quantity")
     .test(
       "min",
-      "Please re-enter the price",
+      "Please re-enter the quantity",
       (quantity) => Number(quantity) > 0
     ),
   description: yup
@@ -57,7 +57,7 @@ const schema = yup.object().shape({
     .min(6, "* At least 6 characters")
     .max(255, "* Up to 255 characters")
     .trim(),
-  category: yup.string().required("* Please select a product category"),
+  // category: yup.string().required("* Please select a product category"),
 });
 
 const ProductUpdate = () => {
@@ -68,7 +68,7 @@ const ProductUpdate = () => {
   const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
 
-  console.log("category" ,categories);
+  console.log("data" ,data);
   
 
   const {
@@ -93,12 +93,11 @@ const ProductUpdate = () => {
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
-
       const updateData = {
         _id : data._id,
         data: {
           name: data.name,
-          category: data.category,
+          category: data.category._id,
           description: data.description,
           images: ["12"],
           price: data.price,
@@ -106,7 +105,7 @@ const ProductUpdate = () => {
           quantity: data.quantity
         }
       };
-      // console.log("newData", newData);
+
 
       await updateProduct(updateData);
       toast.success("Product created successfully, redirect after 2 seconds");
@@ -124,7 +123,7 @@ const ProductUpdate = () => {
       <Breadcrumb>
         <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
         <Breadcrumb.Item>Products</Breadcrumb.Item>
-        <Breadcrumb.Item>Product Add</Breadcrumb.Item>onSubmit
+        <Breadcrumb.Item>Product Update</Breadcrumb.Item>
       </Breadcrumb>
       <div
         className="home-content"
@@ -156,18 +155,18 @@ const ProductUpdate = () => {
             />
             <Text type="danger">{errors.price?.message}</Text>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Category</Form.Label>
-            <Form.Select {...register("category")}>
-              <option value={data?.data?.category?._id}>Select a category</option>
-              {categories?.data?.map((item: any, index: any) => (
-                <option key={index} value={item._id}>
-                  {item.name}
-                </option>
-              ))}
-            </Form.Select>
-            <Text type="danger">{errors.category?.message}</Text>
-          </Form.Group>
+            {/* <Form.Group>
+              <Form.Label>Category</Form.Label>
+              <Form.Select {...register("category")}>
+                <option value={data?.data?.category}>Select a category</option>
+                {categories?.data?.map((item: any, index: any) => (
+                  <option key={index} value={item._id}>
+                    {item.name}
+                  </option>
+                ))}
+              </Form.Select>
+              <Text type="danger">{errors.category?.message}</Text>
+            </Form.Group> */}
           <Form.Group className="mb-3 my-2">
             <Form.Label>Quantity</Form.Label>
             <Form.Control
@@ -176,17 +175,17 @@ const ProductUpdate = () => {
               autoComplete="off"
               {...register("quantity")}
             />
-            <Text type="danger">{errors.price?.message}</Text>
+            <Text type="danger">{errors.quantity?.message}</Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Discount</Form.Label>
             <Form.Control
               type="number"
-              placeholder="Please enter the price of the product"
+              placeholder="Please enter the discount of the product"
               autoComplete="off"
               {...register("discount")}
             />
-            <Text type="danger">{errors.price?.message}</Text>
+            <Text type="danger">{errors.discount?.message}</Text>
           </Form.Group>
           <Form.Group>
             <Form.Label>Description</Form.Label>

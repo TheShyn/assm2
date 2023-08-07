@@ -81,9 +81,9 @@ const ProductList = (props: Props) => {
       key: "category",
     },
     {
-      title: "quantity",
-      dataIndex: "quantity",
-      key: "quantity",
+      title: "Discount",
+      dataIndex: "discount",
+      key: "discount",
     },
     {
       title: "Action",

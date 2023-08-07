@@ -36,18 +36,18 @@ const schema = yup.object().shape({
     .test("min", "Please re-enter the price", (price) => Number(price) > 0),
   discount: yup
     .string()
-    .required("* Required to enter product price")
+    .required("* Required to enter product discount")
     .test(
       "min",
-      "Please re-enter the price",
+      "Please re-enter the discount",
       (discount) => Number(discount) > 0
     ),
   quantity: yup
     .string()
-    .required("* Required to enter product price")
+    .required("* Required to enter product quantity")
     .test(
       "min",
-      "Please re-enter the price",
+      "Please re-enter the quantity",
       (quantity) => Number(quantity) > 0
     ),
   description: yup
@@ -76,9 +76,8 @@ const ProductAdd = () => {
 
   const [previewImage, setPreviewImage] = useState<string>();
   const handlePreviewImage = (e: any) => {
-    console.log("previewImage", previewImage);
-
-    setPreviewImage(URL.createObjectURL(e.target));
+    console.log("previewImage", e.target.files);
+    setPreviewImage(URL.createObjectURL(e.target.files));
   };
 
   const onSubmit: SubmitHandler<any> = async (data) => {
@@ -161,7 +160,7 @@ const ProductAdd = () => {
               autoComplete="off"
               {...register("quantity")}
             />
-            <Text type="danger">{errors.price?.message}</Text>
+            <Text type="danger">{errors.quantity?.message}</Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Discount</Form.Label>
@@ -171,7 +170,7 @@ const ProductAdd = () => {
               autoComplete="off"
               {...register("discount")}
             />
-            <Text type="danger">{errors.price?.message}</Text>
+            <Text type="danger">{errors.discount?.message}</Text>
           </Form.Group>
           <Form.Group>
             <Form.Label>Description</Form.Label>
