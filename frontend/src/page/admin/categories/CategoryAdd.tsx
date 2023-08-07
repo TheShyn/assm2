@@ -53,6 +53,9 @@ const CategoryAdd = (props: Props) => {
       toast.error("Error! Please try again later.");
     }
   };
+  const handleClick = () => {
+    toast.success('Thành công!'); // Hiển thị thông báo thành công
+  };
   // const errors: FieldErrors<any>
   return (
   

@@ -3,20 +3,42 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Space, Table, Typography } from "antd";
 import { NavLink } from "react-router-dom";
 import { useGetCategoriesQuery, useRemoveCategoryMutation } from "../../../api/categories";
+import swal from "sweetalert";
 
 const { Text, Title } = Typography;
 
 type Props = {};
 
-const CategoryList = (props: Props) => {
+const CategoryList = () => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
   const [removeCategory] = useRemoveCategoryMutation();
-  console.log("categories", categories);
   
   const confirm = async (record: any) => {
-    const confirm = window.confirm("Are you sure you want to...?");
-    if (confirm) {
-      removeCategory(record?._id);
+    try {
+      swal({
+        title: "Are you sure you want to delete?",
+        text: "You cannot undo after deleting!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          removeCategory(record._id).unwrap().then(() => {
+              swal("You have successfully deleted", {
+                icon: "success",
+              })})
+            .catch(() => {
+              swal(
+                "Deletion failed, Please delete all products in this category !",
+                {
+                  icon: "error",
+                }
+              );
+            });
+        }
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -57,6 +79,8 @@ const CategoryList = (props: Props) => {
       name: item.name,
     };
   });
+  console.log("categories", categories);
+
 
   return (
     <section className="home-section">
