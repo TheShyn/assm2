@@ -30,7 +30,7 @@ const productApi = createApi({
             query: () => `/products`,
             providesTags: ['Product']
         }),
-        getProductBySlug: builder.query<any, void>({
+        getProductBySlug: builder.query<any, any>({
             query: (slug) => `/products/${slug}`,
             providesTags: ['Product']
 
@@ -48,6 +48,14 @@ const productApi = createApi({
                 url: `/products/${data.id}`,
                 method: "PATCH",
                 body: data.data
+            }),
+            invalidatesTags: ['Product']
+        }),
+        removeProduct: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/products/${id}`,
+                method: "DELETE",
+                // body: data.data
             }),
             invalidatesTags: ['Product']
         }),
