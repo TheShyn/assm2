@@ -12,7 +12,17 @@ import {
 import { toast } from "react-toastify";
 import { useGetCategoriesQuery } from "../../../api/categories";
 
-type Props = {};
+type FormType = {
+  _id: string;
+  name: string;
+  price: number;
+  discount: number;
+  quantity: number;
+  description: string;
+  images: any;
+  category: string;
+};
+
 const { Title, Text } = Typography;
 const schema = yup.object().shape({
   name: yup
@@ -49,7 +59,7 @@ const schema = yup.object().shape({
   category: yup.string().required("* Please select a product category"),
 });
 
-const ProductAdd = (props: Props) => {
+const ProductAdd = () => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
   const [uploadImage] = useUploadImageMutation();
   const [addProduct] = useAddProductMutation();
@@ -60,7 +70,7 @@ const ProductAdd = (props: Props) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<any>({
+  } = useForm<FormType>({
     resolver: yupResolver(schema),
   });
 
@@ -74,17 +84,16 @@ const ProductAdd = (props: Props) => {
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
       console.log("data", data);
-      const url =  await uploadImage(data.images)
+      // const url =  await uploadImage(data.images)
       
       const newData = {
         ...data,
-        images: url,
+        images: ["123"],
       };
       console.log("newData", newData);
-      
 
      
-      await addProduct({ ...data, images: url });
+      await addProduct(newData);
       toast.success("Product created successfully, redirect after 2 seconds");
       setPreviewImage("");
       reset();

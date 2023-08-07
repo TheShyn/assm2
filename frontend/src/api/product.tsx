@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 interface IProductApi {
-    id?: string,
+    _id?: string,
     data: {
         name: string,
         category:string,
@@ -45,7 +45,7 @@ const productApi = createApi({
         }),
         updateProduct: builder.mutation<any, any>({
             query: (data:IProductApi)=>({
-                url: `/products/${data.id}`,
+                url: `/products/${data._id}`,
                 method:"PATCH",
                 body: data.data
             }),

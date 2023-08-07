@@ -10,7 +10,6 @@ type Props = {};
 
 const CategoryList = (props: Props) => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
-  // const [] = u
   const [removeCategory] = useRemoveCategoryMutation();
   console.log("categories", categories);
   

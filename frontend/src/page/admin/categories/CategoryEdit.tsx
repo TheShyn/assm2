@@ -9,16 +9,21 @@ import * as yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetCategoryByIdQuery, useUpdateCategoryMutation } from "../../../api/categories";
 
-type Props = {};
+
+type FormType = {
+  _id: string;
+  name: string;
+};
+
 const { Title, Text } = Typography;
 const schema = yup.object({
   name: yup
     .string()
     .required("* Required to enter category name")
-    .min(6, "* At least 6 characters")
+    .min(4, "* At least 6 characters")
     .trim(),
 });
-const CategoryEdit = (props: Props) => {
+const CategoryEdit = () => {
   const {
     register,
     handleSubmit,
@@ -44,13 +49,14 @@ const CategoryEdit = (props: Props) => {
   
 
   // Submit form
-  const onSubmit: SubmitHandler<any> = async (data) => {
+  const onSubmit: SubmitHandler<FormType> = async (data) => {
     try {
       const categoryUpdate = {
-        name: data.name
-      }
-      console.log("data", categoryUpdate);
-      
+        _id: data._id,
+        data: {
+          name: data.name
+        }
+      }      
       await updateCategory(categoryUpdate);
       toast.success("Category updated successfully");
       reset();
@@ -86,7 +92,7 @@ const CategoryEdit = (props: Props) => {
               {...register("name")}
 
             />
-            {/* <Text type="danger">{errors?.name?.message}</Text> */}
+            <Text type="danger">{errors?.name?.message}</Text>
           </Form.Group>
           <Button style={{ marginTop: 20 }} variant="primary" type="submit">
             {/* Add Category */}

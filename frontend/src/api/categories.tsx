@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 interface ICategory {
-    id?: string ,
+    _id?: string ,
     data: {
         name: string
     }
@@ -37,7 +37,7 @@ const categoryApi = createApi({
         }),
         updateCategory: builder.mutation<any, any>({
             query: (data:ICategory)=>({
-                url: `/categories/${data.id}`,
+                url: `/categories/${data._id}`,
                 method:"PATCH",
                 body: data.data
             }),

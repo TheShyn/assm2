@@ -35,7 +35,7 @@ const CategoryAdd = (props: Props) => {
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
-      // console.log(data);
+      console.log("data", data);
       
       await addCategory({ ...data }).unwrap().then(() => {
           toast.success(

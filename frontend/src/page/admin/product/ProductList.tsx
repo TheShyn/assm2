@@ -11,7 +11,6 @@ type Props = {}
 
 const ProductList = (props: Props) => {
     const { data  , isLoading } = useGetProductsQuery();
-    console.log("products" ,data);
     const [removeProduct , {isSuccess}] = useRemoveProductMutation()
     // console.log("dataRe" ,dataRe);
     
@@ -69,7 +68,7 @@ const ProductList = (props: Props) => {
           key: "action",
           render: (record: any) => (
             <Space size="middle">
-              <NavLink to={"/admin/products/edit/" + record?._id}>
+              <NavLink to={"/admin/products/edit/" + record?.slug}>
                 <EditOutlined />
               </NavLink>
               <Text type="danger" onClick={() => removeConfirm(record)}>
