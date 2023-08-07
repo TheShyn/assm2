@@ -11,7 +11,6 @@ type Props = {};
 const CategoryList = (props: Props) => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
   const [removeCategory] = useRemoveCategoryMutation();
-  console.log("categories", categories);
   
   const confirm = async (record: any) => {
     const confirm = window.confirm("Are you sure you want to...?");
@@ -57,6 +56,8 @@ const CategoryList = (props: Props) => {
       name: item.name,
     };
   });
+  console.log("categories", categories);
+
 
   return (
     <section className="home-section">

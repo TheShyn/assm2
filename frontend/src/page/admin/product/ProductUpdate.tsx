@@ -68,6 +68,9 @@ const ProductUpdate = () => {
   const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
 
+  console.log("category" ,categories);
+  
+
   const {
     register,
     handleSubmit,
@@ -156,7 +159,7 @@ const ProductUpdate = () => {
           <Form.Group>
             <Form.Label>Category</Form.Label>
             <Form.Select {...register("category")}>
-              <option value={data.data.category}>Select a category</option>
+              <option value={data?.data?.category?._id}>Select a category</option>
               {categories?.data?.map((item: any, index: any) => (
                 <option key={index} value={item._id}>
                   {item.name}
