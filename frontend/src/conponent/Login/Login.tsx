@@ -32,9 +32,17 @@ const Login12 = () => {
       }
       dispatch(signin(dataUser))
       message.success("Đăng nhập thành công")
-      setTimeout(() => {
-        navigate('/')
-      }, 1000);
+      if(dataUser.role === 'admin') {
+        return setTimeout(() => {
+          navigate('/admin')
+        }, 1000);
+
+      }else{
+        setTimeout(() => {
+          navigate('/')
+        })
+
+      }
     } catch (error) {
 
       console.log(error);

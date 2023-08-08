@@ -57,44 +57,60 @@ const schema = yup.object().shape({
     .max(255, "* Up to 255 characters")
     .trim(),
   category: yup.string().required("* Please select a product category"),
+  // images: yup.array()
 });
 
 const ProductAdd = () => {
+  const [uploadData, setUploadData] = useState(new FormData());
+  const [uploadingImage] = useUploadImageMutation()
   const { data: categories, isLoading } = useGetCategoriesQuery();
-  const [uploadImage] = useUploadImageMutation();
   const [addProduct] = useAddProductMutation();
   const navigate = useNavigate();
+ 
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormType>({
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const [previewImage, setPreviewImage] = useState<string>();
+  const [previewImage, setPreviewImage] = useState<any>();
   const handlePreviewImage = (e: any) => {
-    console.log("previewImage", e.target.files);
-    setPreviewImage(URL.createObjectURL(e.target.files));
+    const files = e.target.files
+    console.log(files);
+    const  newUpload = new FormData();
+    for (let i = 0; i < files.length; i++) {
+       newUpload.append('files', files[i], "files");
+    }
+    setUploadData(newUpload);
+    if (files && files.length > 0) {
+      const imageUrls = Array.from(files).map((file: any) => URL.createObjectURL(file));
+      setPreviewImage(imageUrls);
+    }
   };
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
       console.log("data", data);
       // const url =  await uploadImage(data.images)
+      console.log(uploadData.getAll("files"));
+      
+      const imgs:any = await uploadingImage(uploadData)
+      console.log(imgs);
       
       const newData = {
         ...data,
-        images: ["123"],
+        images: imgs?.data?.secure_urls,
       };
       console.log("newData", newData);
 
-     
+
       await addProduct(newData);
       toast.success("Product created successfully, redirect after 2 seconds");
-      setPreviewImage("");
+      setPreviewImage(null);
       reset();
       setTimeout(() => navigate("/admin/products"), 2000);
     } catch (error: any) {
@@ -187,6 +203,7 @@ const ProductAdd = () => {
             <Form.Label>Image</Form.Label>
             <Form.Control
               type="file"
+              multiple
               {...register("images")}
               onChange={(e) => handlePreviewImage(e)}
             />
@@ -197,15 +214,28 @@ const ProductAdd = () => {
               Preview Image
             </label>
             <div className="mt-1">
+              <div className="flex flex-wrap gap-4">
+                {previewImage?.length ? previewImage?.map((imageUrl: any, index: any) => (
+                  <img
+                    key={index}
+                    src={imageUrl}
+                    alt={`Preview ${index}`}
+                    style={{ maxWidth: '150px', maxHeight: '150px', margin: '5px' }}
+                    className="object-cover"
+                  />
+                ))
+              :
               <Image
                 src={
-                  previewImage ||
                   "https://res.cloudinary.com/do9rcgv5s/image/upload/v1669841925/no-image-icon-6_ciydgz.png"
                 }
                 alt="Preview Image"
                 className="h-8 w-full object-cover rounded-md"
                 style={{ height: "300px" }}
               />
+              }
+
+              </div>
             </div>
           </div>
           <Button style={{ marginTop: 20 }} variant="primary" type="submit">

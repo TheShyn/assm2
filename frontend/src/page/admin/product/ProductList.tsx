@@ -103,7 +103,7 @@ const ProductList = (props: Props) => {
   const dataProducts = data?.data?.map((item: any, index: any) => {
     return {
       ...item,
-      category: item.category.name,
+      category: item?.category?.name,
       images: item.images[0],
       key: index + 1,
 

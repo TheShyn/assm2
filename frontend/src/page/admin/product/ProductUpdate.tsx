@@ -1,11 +1,11 @@
-import * as yup from "yup";
-import React, { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
-import { Breadcrumb, Typography, Image } from "antd";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Form, Button } from "react-bootstrap";
+import { Breadcrumb, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as yup from "yup";
 import { useGetCategoriesQuery } from "../../../api/categories";
 import {
   useGetProductBySlugQuery,
@@ -62,44 +62,55 @@ const schema = yup.object().shape({
 
 const ProductUpdate = () => {
   const { id } = useParams();
+  const [uploadData, setUploadData] = useState(new FormData());
   const { data: categories, isLoading } = useGetCategoriesQuery();
-  const { data } = useGetProductBySlugQuery(id || "");
-  const [uploadImage] = useUploadImageMutation();
+  const { data, isLoading: loadingData } = useGetProductBySlugQuery(id || "");
+  const [uploadImages] = useUploadImageMutation();
   const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
 
-  console.log("data" ,data);
-  
+  console.log("data", data);
+
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormType>({
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
   useEffect(() => {
-    reset(data.data);
+    reset(data?.data);
   }, []);
 
-  const [previewImage, setPreviewImage] = useState<string>();
+  const [previewImage, setPreviewImage] = useState<any>();
 
   const handlePreviewImage = (e: any) => {
-    console.log("previewImage", previewImage);
-    setPreviewImage(URL.createObjectURL(e.target));
+    const files = e.target.files
+    console.log(files);
+    const newUpload = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      newUpload.append('files', files[i], "files");
+    }
+    setUploadData(newUpload);
+    if (files && files.length > 0) {
+      const imageUrls = Array.from(files).map((file: any) => URL.createObjectURL(file));
+      setPreviewImage(imageUrls);
+    }
   };
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
+      const imgs:any = await uploadImages(uploadData)
       const updateData = {
-        _id : data._id,
+        _id: data._id,
         data: {
           name: data.name,
           category: data.category._id,
           description: data.description,
-          images: ["12"],
+          images: imgs?.data?.secure_urls,
           price: data.price,
           discount: data.discount,
           quantity: data.quantity
@@ -109,14 +120,16 @@ const ProductUpdate = () => {
 
       await updateProduct(updateData);
       toast.success("Product created successfully, redirect after 2 seconds");
-      setPreviewImage("");
+      setPreviewImage(null);
       reset();
       setTimeout(() => navigate("/admin/products"), 2000);
     } catch (error: any) {
       toast.error("Error! Please try again later.");
     }
   };
-
+  useEffect(() => {
+    setPreviewImage(data?.data?.images)
+  }, [loadingData])
   return (
     <section className="home-section">
       {isLoading ? <div>...Loading</div> : ""}
@@ -155,7 +168,7 @@ const ProductUpdate = () => {
             />
             <Text type="danger">{errors.price?.message}</Text>
           </Form.Group>
-            {/* <Form.Group>
+          {/* <Form.Group>
               <Form.Label>Category</Form.Label>
               <Form.Select {...register("category")}>
                 <option value={data?.data?.category}>Select a category</option>
@@ -212,15 +225,17 @@ const ProductUpdate = () => {
               Preview Image
             </label>
             <div className="mt-1">
-              <Image
-                src={
-                  previewImage ||
-                  "https://res.cloudinary.com/do9rcgv5s/image/upload/v1669841925/no-image-icon-6_ciydgz.png"
-                }
-                alt="Preview Image"
-                className="h-8 w-full object-cover rounded-md"
-                style={{ height: "300px" }}
-              />
+              <div className="flex flex-wrap gap-4">
+                {previewImage?.map((imageUrl: any, index: any) => (
+                  <img
+                    key={index}
+                    src={imageUrl}
+                    alt={`Preview ${index}`}
+                    style={{ maxWidth: '150px', maxHeight: '150px', margin: '5px' }}
+                    className="object-cover"
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <Button style={{ marginTop: 20 }} variant="primary" type="submit">
