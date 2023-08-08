@@ -11,7 +11,7 @@ const Header = (props: Props) => {
             <div className="col-12">
               <nav className="main-nav">
 
-                <a href="index.html" className="logo">
+                <a href="/" className="logo">
                   <img src="src/assets/images/logo.png"/>
                 </a>
 

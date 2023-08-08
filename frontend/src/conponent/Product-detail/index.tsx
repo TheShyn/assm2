@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useGetProductBySlugQuery } from '../../api/product'
+import { add } from '../../Slices/Cart'
+import { useAppDispatch } from '../../app/hook'
 
 type Props = {}
 
 const Product_detail = (props: Props) => {
+    const navigate = useNavigate()
     const { slug } = useParams()
     console.log(slug)
     const { data } = useGetProductBySlugQuery(slug)
@@ -12,17 +15,27 @@ const Product_detail = (props: Props) => {
     const item = data?.data
 
     const [count, Setcount] = useState(1)
-    const countId = count;
+    
     const increment = () => {
+       
         return Setcount(count + 1);
     }
     const decrement = () => {
-        if (countId === 1) {
+        if (count === 1) {
 
         } else {
             return Setcount(count - 1);
         }
     }
+    
+  const handelAdd =() => {
+    console.log(count);
+    
+    dispatch(add({ ...item, count}))
+    setTimeout(() =>navigate("/cart"),2000)
+    
+  }
+    const dispatch = useAppDispatch();
     return (
         <div className="tw-py-9 tw-bg-gray-light mt-[100px]">
            
@@ -37,7 +50,7 @@ const Product_detail = (props: Props) => {
                                     <div className="swiper-container">
                                         <div className="swiper-wrapper">
                                             <div className="swiper-slide">
-                                                <img src={item?.images?.[0]} alt="product image" className='min-w-[700px] min-h[500px]'/>
+                                                <img src={item?.images?.[0]} alt="product image" className='min-w-[700px] min-h[400px] object-cover'/>
                                             </div>
                                             <div className="swiper-slide">
                                                 <img src={item?.images?.[2]} alt="product image" />
@@ -61,7 +74,7 @@ const Product_detail = (props: Props) => {
                                         <div className="swiper-wrapper">
                                             <div className="swiper-slide">
                                                 <a href="javascript:void(0)">
-                                                    <img src={item?.images?.[0]} alt="product image" />
+                                                    <img src={item?.images?.[0]} alt="product image" className='w-[200px] h-[200px] object-cover'/>
                                                 </a>
                                             </div>
 
@@ -85,7 +98,7 @@ const Product_detail = (props: Props) => {
                             <h3 className="font-medium text-lg capitalize">{data?.data?.name}</h3>
                             <h5 className="font-bold text-md leading-none text-orange my-3"><del className="font-normal text-sm mr-1 inline-block">$110.00</del>{data?.data?.price}</h5>
                             <div className="mb-3">Người  bán:<span> Trung  </span></div>
-                            <div className="mb-3">Số lượng : <span> 100 </span></div>
+                            <div className="mb-3">Số lượng : <span> {data?.data?.quantity} </span></div>
                             <div className="mb-3"><span>Ngày bán:</span> <span className="font-semibold">9 left in stock</span></div>
                             <p className="mb-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
 
@@ -94,11 +107,13 @@ const Product_detail = (props: Props) => {
                                     <div className="flex flex-wrap items-center mt-8">
                                         <div className="flex count border border-solid border-gray-300 p-2 h-11">
                                             <button onClick={() => decrement()} className="decrement flex-auto w-5 leading-none" aria-label="button">-</button>
-                                            <input type="number" min="1" max="100" step="1" value={countId} className="quantity__input flex-auto w-8 text-center focus:outline-none input-appearance-none" />
+                                            <input type="number" min="1" max="100" step="1" value={count} className="quantity__input flex-auto w-8 text-center focus:outline-none input-appearance-none" />
                                             <button onClick={() => increment()} className="increment flex-auto w-5 leading-none" aria-label="button">+</button>
                                         </div>
                                         <div className="ml-2 sm:ml-8">
-                                            <button className="bg-black leading-none py-4 px-5 md:px-8 font-normal text-sm h-11 text-white transition-all hover:bg-orange" aria-label="add to cart">Mua</button>
+                                            <button onClick={handelAdd} 
+                                            className="bg-black leading-none py-4 px-5 md:px-8 font-normal text-sm h-11 text-white transition-all hover:bg-orange" aria-label="add to cart">
+                                                Mua</button>
                                         </div>
                                         <a href="#" className="text-md ml-8"><i className="icon-heart"></i></a>
                                         <a href="#" className="text-md ml-8"><i className="icon-refresh"></i></a>

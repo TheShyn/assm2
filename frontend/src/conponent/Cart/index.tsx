@@ -1,21 +1,16 @@
 import React, { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../app/hook';
+import { decrease, increase } from '../../Slices/Cart';
 
 type Props = {}
-
+ 
 const Cart = (props: Props) => {
+    const dispatch = useAppDispatch();
+    const { items } = useAppSelector((state: any) => state.cart);
+    console.log(items);
+    
+    
 
-    const [count, Setcount] = useState(1)
-    const countId = count;
-    const increment = () => {
-        return Setcount(count + 1);
-    }
-    const decrement = () => {
-        if (countId === 0) {
-            confirm("Bạn có muốn xóa sản phẩm")
-        } else {
-            return Setcount(count - 1);
-        }
-    }
     return (
         <div>
             <div className="py-9 bg-gray-light">
@@ -53,31 +48,34 @@ const Cart = (props: Props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {items?.map((item: any) => (
 
-                                    <tr>
-                                        <td className="w-32 p-3 border border-solid border-gray-600 text-center">
-                                            <a href="#">
-                                                <img src="assets/images/single-product/sm/product1.webp" alt="product image" /></a>
-                                        </td>
-                                        <td className="p-3 border border-solid border-gray-600 text-center">
-                                            <a href="#" className="transition-all hover:text-orange">Birpod product unsde</a><span>m / gold</span>
-                                        </td>
-                                        <td className="p-3 border border-solid border-gray-600 text-center"><span><span>$80.00</span></span></td>
-                                        <td className="p-3 border border-solid border-gray-600 text-center">
+                                        <tr key={item.id}>
+                                            <td className="w-32 p-3 border border-solid border-gray-600 text-center">
+                                                <img src={item?.images} alt="product image" className='w-20 h-20 object-cover' />
+                                            </td>
+                                            <td className="p-3 border border-solid border-gray-600 text-center">
+                                                <a href="#" className="transition-all hover:text-orange">{item?.name}</a>
+                                            </td>
+                                            <td className="p-3 border border-solid border-gray-600 text-center"><span><span>${item?.price}</span></span></td>
+                                            <td className="p-3 border border-solid border-gray-600 text-center">
 
-                                            <div className="flex count border border-solid border-gray-300 p-2 h-11">
-                                                <button  onClick={() => decrement()} className="decrement flex-auto w-5 leading-none" aria-label="button">-</button>
-                                                <input type="number" min="1" max="100" step="1" value={countId} className="quantity__input flex-auto w-8 text-center focus:outline-none input-appearance-none" />
-                                                <button onClick={() => increment()} className="increment flex-auto w-5 leading-none" aria-label="button">+</button>
-                                            </div>
-                                        </td>
-                                        <td className="p-3 border border-solid border-gray-600 text-center"><span>$80.00</span></td>
-                                        <td className="p-3 border border-solid border-gray-600 text-center">
-                                           
-                                            <a href="#" className="inline-block mx-1 hover:text-orange transition-all"><i className="icon-close"></i></a>
-                                        </td>
-                                    </tr>
-                                 
+                                                <div className="flex count border border-solid border-gray-300 p-2 h-11">
+                                                    <button onClick={() => dispatch(decrease(item._id))} className="decrement flex-auto w-5 leading-none" aria-label="button">-</button>
+                                                    <input type="number" min="1" max="100" defaultValue={item.count} step="1" className="quantity__input flex-auto w-8 text-center focus:outline-none input-appearance-none" />
+                                                    <button onClick={() => dispatch(increase(item._id))} className="increment flex-auto w-5 leading-none" aria-label="button">+</button>
+                                                </div>
+                                            </td>
+                                            <td className="p-3 border border-solid border-gray-600 text-center"><span>$80.00</span></td>
+                                            <td className="p-3 border border-solid border-gray-600 text-center">
+
+                                                <a href="#" className="inline-block mx-1 hover:text-orange transition-all"><i className="icon-close"></i></a>
+                                            </td>
+                                        </tr>
+
+                                    ))}
+
+
 
                                 </tbody>
                             </table>

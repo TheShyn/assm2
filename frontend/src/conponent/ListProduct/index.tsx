@@ -2,6 +2,7 @@ import React from "react";
 import { useAppDispatch } from "../../app/hook";
 import { useGetProductBySlugQuery, useGetProductsQuery } from "../../api/product";
 import { Link } from "react-router-dom";
+import { add } from "../../Slices/Cart";
 
 const ListProduct = () => {
     const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ const ListProduct = () => {
                     </div>
                 </div>
             </div>
-
+       
             <section className="section" id="products">
                 <div className="container">
                     <div className="row">
@@ -38,14 +39,10 @@ const ListProduct = () => {
                 </div>
                 <div className="container">
                     <div className="row">
-<<<<<<< HEAD
                         {data?.data?.map((item: any) => {
                             console.log(item);
 
 
-=======
-                        {data?.data?.map((item:any) => {
->>>>>>> daedbea8ba3c9c44bad1c233a864bb4c99c5a807
                             return (
                                 <div className="col-lg-4">
                                     <div className="item">
@@ -57,7 +54,7 @@ const ListProduct = () => {
                                                     </Link>
 
                                                     <li><a href="single-product.html"><i className="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
+                                                    <li><a><button  onClick={() => dispatch(add({ ...item, quantity: 1 }))}><i className="fa fa-shopping-cart"></i></button></a></li>
                                                 </ul>
                                             </div>
                                             <img src={item?.images?.[0]} alt=""  className='w-[400px] h-[500px] object-cover'/>

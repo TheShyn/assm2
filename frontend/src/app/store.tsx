@@ -9,7 +9,7 @@ import {
     REGISTER,
     REHYDRATE,
 } from 'redux-persist';
-
+import { cartReducer } from '../Slices/Cart';
 import storage from 'redux-persist/lib/storage';
 import Products from '../Slices/Products';
 import productApi, { productReducer } from '../api/product';
@@ -27,6 +27,7 @@ const rootReducer = combineReducers({
     [productApi.reducerPath]: productReducer,
     [categoryApi.reducerPath]: categoryReducer,
     [authApi.reducerPath]: authReducer,
+    cart: cartReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
