@@ -14,6 +14,7 @@ import WebsiteLayout from "./page/layouts/WebsiteLayout";
 import Home from "./conponent/Home";
 import Product_detail from "./conponent/Product-detail";
 import Cart from "./conponent/Cart";
+import About from "./conponent/About";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="products" element={<ListPoduct />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="about" element={<About />} />
           {/* <Route path="signin" element={<Login />} />
           <Route path="signup" element={<Register />} /> */}
         </Route>

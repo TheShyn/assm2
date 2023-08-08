@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import { add } from "../../Slices/Cart";
-=======
 import { useGetProductsQuery } from "../../api/product";
->>>>>>> 92ee603dd113c752a1d29d528fccafd863ecc17c
+import { useDispatch } from "react-redux";
 
 const ListProduct = () => {
-
+    const dispatch = useDispatch()
     const { data, isLoading } = useGetProductsQuery()
     console.log(data?.data);
     // console.log(data);
@@ -40,12 +38,7 @@ const ListProduct = () => {
                 <div className="container">
                     <div className="row">
                         {data?.data?.map((item: any) => {
-<<<<<<< HEAD
                             console.log(item);
-
-
-=======
->>>>>>> 92ee603dd113c752a1d29d528fccafd863ecc17c
                             return (
                                 <div className="col-lg-4">
                                     <div className="item">

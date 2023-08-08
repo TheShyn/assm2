@@ -22,13 +22,8 @@ const Header = (props: Props) => {
             <div className="col-12">
               <nav className="main-nav">
 
-<<<<<<< HEAD
                 <a href="/" className="logo">
                   <img src="src/assets/images/logo.png"/>
-=======
-                <a href="index.html" className="logo">
-                  <img src="src/assets/images/logo.png" />
->>>>>>> 92ee603dd113c752a1d29d528fccafd863ecc17c
                 </a>
 
                 <ul className="nav">
@@ -39,7 +34,7 @@ const Header = (props: Props) => {
                   <li className="submenu">
                     <a href="javascript:;">Pages</a>
                     <ul>
-                      <li><a href="about.html">About Us</a></li>
+                      <li><a href="about">About Us</a></li>
                       <li><a href="products">Products</a></li>
                       <li><a href="single-product.html">Single Product</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
