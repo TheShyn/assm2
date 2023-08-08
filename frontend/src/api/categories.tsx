@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 interface ICategory {
-    id?: string ,
+    _id?: string ,
     data: {
         name: string
     }
@@ -24,7 +24,7 @@ const categoryApi = createApi({
             query: ()=> `/categories`,
             providesTags: ['Categories']
         }),
-        getCategoryById: builder.query<any , void>({
+        getCategoryById: builder.query<any , number | string>({
             query: (id)=> `/categories/${id}`
         }),
         addCategory: builder.mutation({
@@ -37,13 +37,13 @@ const categoryApi = createApi({
         }),
         updateCategory: builder.mutation<any, any>({
             query: (data:ICategory)=>({
-                url: `/categories/${data.id}`,
+                url: `/categories/${data._id}`,
                 method:"PATCH",
                 body: data.data
             }),
             invalidatesTags: ['Categories']
         }),
-        removeProduct: builder.mutation<any, any>({
+        removeCategory: builder.mutation<any, any>({
             query: (id)=>({
                 url: `/categories/${id}`,
                 method:"DELETE",
@@ -55,6 +55,6 @@ const categoryApi = createApi({
 })
 
 
-export const {useGetCategoriesQuery, useGetCategoryByIdQuery, useAddCategoryMutation, useUpdateCategoryMutation} = categoryApi
+export const {useGetCategoriesQuery, useGetCategoryByIdQuery, useAddCategoryMutation, useUpdateCategoryMutation , useRemoveCategoryMutation} = categoryApi
 export const categoryReducer = categoryApi.reducer
 export default categoryApi

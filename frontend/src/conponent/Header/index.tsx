@@ -1,8 +1,19 @@
-import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../Slices/Auth";
+import { useAppDispatch, useAppSelector } from "../../app/hook";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const data = useAppSelector((state: any) => state.user)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    dispatch(logout())
+    setTimeout(() => {
+      navigate("/login")
+    }, 2000);
+  }
   return (
     <div>
       <header className="header-area header-sticky mt-3">
@@ -11,8 +22,13 @@ const Header = (props: Props) => {
             <div className="col-12">
               <nav className="main-nav">
 
+<<<<<<< HEAD
                 <a href="/" className="logo">
                   <img src="src/assets/images/logo.png"/>
+=======
+                <a href="index.html" className="logo">
+                  <img src="src/assets/images/logo.png" />
+>>>>>>> 92ee603dd113c752a1d29d528fccafd863ecc17c
                 </a>
 
                 <ul className="nav">
@@ -29,16 +45,21 @@ const Header = (props: Props) => {
                       <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                   </li>
-                  <li className="submenu">
-                    <a href="javascript:;">Features</a>
-                    <ul>
-                      <li><a href="#">Features Page 1</a></li>
-                      <li><a href="#">Features Page 2</a></li>
-                      <li><a href="#">Features Page 3</a></li>
-                      <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
-                    </ul>
+                  <li className={`${data.isLogin ? "submenu" : ""} flex items-center`}>
+                    {data.isLogin === true ?
+                      <>
+                        <a href="javascript:;">
+                          <img className="max-w-[20px] mt-2" src={`${data?.user?.avatar}`} alt="" />
+
+                        </a>
+                        <ul>
+                          <li><a href="#" onClick={handleLogout}>Đăng xuất</a></li>
+                        </ul>
+                      </>
+                      :
+                      <Link to='/login'>Đăng nhập</Link>
+                    }
                   </li>
-                  <li className="scroll-to-section"><a href="#explore">Explore</a></li>
                 </ul>
                 <a className='menu-trigger'>
                   <span>Menu</span>

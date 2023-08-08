@@ -1,10 +1,10 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 interface IProductApi {
-    id?: string,
+    _id?: string,
     data: {
         name: string,
-        category:string,
+        category: string,
         description: string,
         images: string[],
         price: number,
@@ -14,7 +14,7 @@ interface IProductApi {
 }
 
 const productApi = createApi({
-    reducerPath:'products',
+    reducerPath: 'products',
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/api',
@@ -25,44 +25,44 @@ const productApi = createApi({
             return headers;
         },
     }),
-    endpoints: (builder)=>({
-        getProducts: builder.query<any , void>({
-            query: ()=> `/products`,
+    endpoints: (builder) => ({
+        getProducts: builder.query<any, void>({
+            query: () => `/products`,
             providesTags: ['Product']
         }),
-        getProductBySlug: builder.query<any , any>({
-            query: (slug)=> `/products/${slug}`,
+        getProductBySlug: builder.query<any, any>({
+            query: (slug) => `/products/${slug}`,
             providesTags: ['Product']
 
         }),
         addProduct: builder.mutation({
-            query: (data:IProductApi)=>({
+            query: (data: IProductApi) => ({
                 url: `/products`,
-                method:"POST",
+                method: "POST",
                 body: data
-            }), 
+            }),
             invalidatesTags: ['Product']
         }),
         updateProduct: builder.mutation<any, any>({
-            query: (data:IProductApi)=>({
-                url: `/products/${data.id}`,
-                method:"PATCH",
+            query: (data: IProductApi) => ({
+                url: `/products/${data._id}`,
+                method: "PATCH",
                 body: data.data
             }),
             invalidatesTags: ['Product']
         }),
         removeProduct: builder.mutation<any, any>({
-            query: (id)=>({
+            query: (id) => ({
                 url: `/products/${id}`,
-                method:"DELETE",
+                method: "DELETE",
                 // body: data.data
             }),
             invalidatesTags: ['Product']
         }),
         uploadImage: builder.mutation<any, any>({
-            query: (data:any)=>({
+            query: (data: any) => ({
                 url: `/upload/cloudinary-upload`,
-                method:"POST",
+                method: "POST",
                 body: data
             }),
             invalidatesTags: ['Product']
@@ -71,6 +71,6 @@ const productApi = createApi({
 })
 
 
-export const {useGetProductsQuery, useGetProductBySlugQuery, useAddProductMutation, useUpdateProductMutation, useUploadImageMutation} = productApi
+export const { useGetProductsQuery, useGetProductBySlugQuery, useAddProductMutation, useUpdateProductMutation, useUploadImageMutation, useRemoveProductMutation } = productApi
 export const productReducer = productApi.reducer
 export default productApi
